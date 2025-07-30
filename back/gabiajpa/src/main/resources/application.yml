@@ -1,0 +1,44 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: gabiajpa
+
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3307/test?useUnicode=true&characterEncoding=utf8mb4&characterSetResults=utf8mb4
+    username: root
+    password: root
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+  security:
+    jwt:
+      secret: your-super-secret-key-that-is-at-least-64-bytes-long-for-hs512-to-work-correctly
+      expiration: 86400000 # 24 hours
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    com.product.backend: debug
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
